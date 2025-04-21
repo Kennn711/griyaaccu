@@ -2,7 +2,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ Route('dashboard.index') }}">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
@@ -16,10 +16,10 @@
             <div class="collapse" id="data">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/blank-page.html">Accu</a>
+                        <a class="nav-link" href="{{ Route('accu.index') }}">Accu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html">Tipe Accu</a>
+                        <a class="nav-link" href="{{ Route('type.index') }}">Tipe Accu</a>
                     </li>
                 </ul>
             </div>

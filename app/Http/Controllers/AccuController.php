@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accu;
 use Illuminate\Http\Request;
 
 class AccuController extends Controller
@@ -11,7 +12,9 @@ class AccuController extends Controller
      */
     public function index()
     {
-        //
+        return view('accu/index', [
+            'accu' => Accu::with('type')->get()
+        ]);
     }
 
     /**
@@ -27,7 +30,14 @@ class AccuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'accu_name' => 'required|min:3|max:50',
+            'type_id' => 'required',
+        ]);
+
+        Accu::create($validation);
+
+        return redirect()->back();
     }
 
     /**

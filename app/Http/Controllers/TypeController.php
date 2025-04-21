@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
@@ -11,7 +12,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('type.index', [
+            "type" => Type::get()
+        ]);
     }
 
     /**
@@ -27,7 +30,13 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'type_name' => "required|min:3|max:50|unique:App\Models\Type,type_name"
+        ]);
+
+        Type::create($validation);
+
+        return redirect()->back();
     }
 
     /**
@@ -51,7 +60,13 @@ class TypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validation = $request->validate([
+            'type_name' => 'required|min:3|max:50|unique:App\Models\Type,type_name'
+        ]);
+
+        Type::findOrFail($id)->update($validation);
+
+        return redirect()->back();
     }
 
     /**
@@ -59,6 +74,8 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Type::findOrFail($id)->delete();
+
+        return redirect()->back();
     }
 }

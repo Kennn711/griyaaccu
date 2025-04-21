@@ -7,5 +7,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::resource('/griyaaccu/accu', AccuController::class);
-Route::resource('/griyaaccu/type', TypeController::class);
+Route::resource('accu', AccuController::class);
+Route::resource('type', TypeController::class);
