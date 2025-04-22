@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accu;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class TypeController extends Controller
     public function index()
     {
         return view('type.index', [
-            "type" => Type::get()
+            "type" => Type::withCount('accu')->get()
         ]);
     }
 
@@ -74,6 +75,12 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
+        $accuAlreadyExist = Accu::where('type_id', $id)->exists();
+
+        if ($accuAlreadyExist) {
+            return redirect()->back();
+        }
+
         Type::findOrFail($id)->delete();
 
         return redirect()->back();

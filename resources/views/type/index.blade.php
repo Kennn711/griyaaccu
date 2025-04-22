@@ -19,23 +19,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($type as $see)
+                            @forelse ($type as $see)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $see->type_name }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-md btn-warning editBtn" data-id="{{ $see->id }}" data-name="{{ $see->type_name }}" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                                            <button class="btn btn-md btn-warning editBtn" data-id="{{ $see->id }}" data-name="{{ $see->type_name }}" data-bs-toggle="modal" data-bs-target="#editModal">Ubah</button>
 
-                                            <form action="{{ route('type.destroy', $see->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-md btn-danger">Hapus</button>
-                                            </form>
+                                            @if ($see->accu_count == 0)
+                                                <form action="{{ route('type.destroy', $see->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-md btn-danger">Hapus</button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">Tidak ada data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

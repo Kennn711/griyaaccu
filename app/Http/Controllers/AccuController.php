@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accu;
+use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AccuController extends Controller
 {
@@ -13,7 +15,8 @@ class AccuController extends Controller
     public function index()
     {
         return view('accu/index', [
-            'accu' => Accu::with('type')->get()
+            'accu' => Accu::with('type')->get(),
+            'type' => Type::get()
         ]);
     }
 
@@ -31,7 +34,14 @@ class AccuController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'accu_name' => 'required|min:3|max:50',
+            'accu_name' => [
+                'required',
+                'min:2',
+                'max:50',
+                Rule::unique((new \App\Models\Accu)->getTable())->where(function ($query) use ($request) {
+                    return $query->where('type_id', $request->type_id);
+                }),
+            ],
             'type_id' => 'required',
         ]);
 
@@ -61,7 +71,21 @@ class AccuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validation = $request->validate([
+            'accu_name' => [
+                'required',
+                'min:2',
+                'max:50',
+                Rule::unique((new \App\Models\Accu)->getTable())->where(function ($query) use ($request) {
+                    return $query->where('type_id', $request->type_id);
+                }),
+            ],
+            'type_id' => 'required',
+        ]);
+
+        Accu::findOrFail($id)->update($validation);
+
+        return redirect()->back();
     }
 
     /**
@@ -69,6 +93,8 @@ class AccuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Accu::findOrFail($id)->delete();
+
+        return redirect()->back();
     }
 }
