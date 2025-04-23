@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('accu_id');
             $table->date('purchase_date');
             $table->date('due_date');
-            $table->date('payment_date');
+            $table->date('payment_date')->nullable();
             $table->integer('quantity');
             $table->enum('purchase_status', ['pending', 'success'])->default('pending');
             $table->timestamps();

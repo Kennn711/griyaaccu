@@ -25,6 +25,12 @@
             </div>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ Route('inventory.index') }}">
+                <span class="menu-title">Catatan Barang</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#transaction" aria-expanded="false" aria-controls="transaction">
                 <span class="menu-title">Catatan Transaksi</span>
                 <i class="menu-arrow"></i>
@@ -36,7 +42,7 @@
                         <a class="nav-link" href="pages/samples/blank-page.html">Penjualan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html">Pembelian</a>
+                        <a class="nav-link" href="{{ Route('purchase.index') }}">Pembelian</a>
                     </li>
                 </ul>
             </div>

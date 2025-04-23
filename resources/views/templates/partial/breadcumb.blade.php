@@ -11,6 +11,14 @@
             Data Tipe Accu
         @endif
 
+        @if (Route::currentRouteName() == 'inventory.index')
+            Catatan Barang
+        @endif
+
+        @if (Route::currentRouteName() == 'purchase.index')
+            Transaksi Pembelian
+        @endif
+
         @if (Route::currentRouteName() == 'dashboard.index')
             Dashboard
         @endif
