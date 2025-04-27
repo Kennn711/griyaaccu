@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('accu_id');
+            $table->string('purchase_code');
             $table->date('purchase_date');
             $table->date('due_date');
+            $table->float('total_discount');
+            $table->float('subtotal_ppn');
+            $table->float('total');
             $table->date('payment_date')->nullable();
-            $table->integer('quantity');
             $table->enum('purchase_status', ['pending', 'success'])->default('pending');
             $table->timestamps();
         });

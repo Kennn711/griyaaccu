@@ -19,8 +19,6 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
-
         $validation = $request->validate([
             'accu_id' => 'required',
             'quantity' => 'required|integer'

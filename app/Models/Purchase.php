@@ -8,17 +8,24 @@ use PDO;
 class Purchase extends Model
 {
     protected $guarded = [
-        'accu_id',
         'purchase_date',
         'due_date',
         'payment_date',
-        'quantity',
         'purchase_status',
     ];
 
-    // Function on Purchase Store
+    // Relation On Purchase Detail Table
+    public function purchasedetail()
+    {
+        return $this->hasMany(PurchaseDetail::class);
+    }
+    // Relation On Purchase Detail Table END
+
+
+    // Function to return current date on Purchase Store Function
     static function purchase_date()
     {
         return now();
     }
+    // Function to return current date on Purchase Store Function END
 }

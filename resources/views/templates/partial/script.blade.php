@@ -18,4 +18,8 @@
 
 {{-- Bootstrap 5 JS --}}
 <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+
+{{-- JQuery 3.7.1 --}}
+<script src="{{ asset('assets/jquery/script.js') }}"></script>
+
 @stack('scripts')
