@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('purchase_id');
             $table->foreignId('accu_id');
-            $table->float('subtotal');
+            $table->float('price');
             $table->integer('quantity');
             $table->timestamps();
         });

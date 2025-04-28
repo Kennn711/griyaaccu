@@ -9,7 +9,17 @@ class PurchaseDetail extends Model
     protected $fillable = [
         'purchase_id',
         'accu_id',
-        'subtotal',
+        'price',
         'quantity',
     ];
+
+    public function purchase()
+    {
+        return $this->belongsTo(Purchase::class);
+    }
+
+    public function accu()
+    {
+        return $this->belongsTo(Accu::class);
+    }
 }

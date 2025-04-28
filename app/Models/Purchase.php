@@ -7,9 +7,13 @@ use PDO;
 
 class Purchase extends Model
 {
-    protected $guarded = [
+    protected $fillable = [
+        'purchase_code',
         'purchase_date',
         'due_date',
+        'total_discount',
+        'subtotal_ppn',
+        'total',
         'payment_date',
         'purchase_status',
     ];
