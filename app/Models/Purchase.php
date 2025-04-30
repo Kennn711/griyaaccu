@@ -25,6 +25,15 @@ class Purchase extends Model
     }
     // Relation On Purchase Detail Table END
 
+    public function accu()
+    {
+        return $this->belongsTo(Accu::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 
     // Function to return current date on Purchase Store Function
     static function purchase_date()

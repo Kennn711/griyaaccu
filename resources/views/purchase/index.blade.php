@@ -31,7 +31,72 @@
                                 <td>{{ $see->due_date }}</td>
                                 <td>{{ $see->payment_date ?? 'Belum Dibayar' }}</td>
                                 <td>
-                                    Alok
+                                    @php
+                                        $detailModal = 'detailModal-' . $see->id;
+                                    @endphp
+                                    <button class="btn btn-lg btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#{{ $detailModal }}">
+                                        <i class="fi-br-description-alt"></i>
+                                    </button>
+
+                                    {{-- Modal Detail Purchase --}}
+                                    <div class="modal fade" id="{{ $detailModal }}" tabindex="-1" aria-labelledby="{{ $detailModal }}Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Detail Pembelian {{ $see->purchase_code }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <h6>Tanggal Pembelian</h3>
+                                                                <p>{{ $see->purchase_date }}</p>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <h6>Jatuh Tempo</h6>
+                                                            <p>{{ $see->due_date }}</p>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <h6>Tanggal Pembayaran</h6>
+                                                            <p>{{ $see->payment_date ?? 'Belum dibayar' }}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="card invisible">
+                                                            <div class="card-body">
+                                                                <table class="table visible">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>No</th>
+                                                                            <th>Nama Accu</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Harga Satuan</th>
+                                                                            <th>Subtotal</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($see->purchasedetail as $seeDetail)
+                                                                            <tr>
+                                                                                <td>{{ $loop->iteration }}</td>
+                                                                                <td>{{ $seeDetail->accu->accu_name }} {{ $seeDetail->accu->type->type_name }}</td>
+                                                                                <td>{{ $seeDetail->quantity }}</td>
+                                                                                <td>Rp {{ number_format($seeDetail->price, 0, ',', '.') }}</td>
+                                                                                <td>Rp {{ number_format($seeDetail->price * $seeDetail->quantity, 0, ',', '.') }}</td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>
                                     Alok

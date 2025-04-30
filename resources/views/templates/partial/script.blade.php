@@ -22,4 +22,7 @@
 {{-- JQuery 3.7.1 --}}
 <script src="{{ asset('assets/jquery/script.js') }}"></script>
 
+{{-- Fontawesome JS --}}
+<script src="{{ asset('assets/fontawesome/js/fontawesome.min.js') }}"></script>
+
 @stack('scripts')

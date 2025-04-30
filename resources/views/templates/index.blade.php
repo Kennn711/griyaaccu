@@ -25,6 +25,9 @@
 
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+
+    {{-- UI Icons --}}
+    <link rel="stylesheet" href="{{ asset('assets/uicons-bold-rounded/css/uicons-bold-rounded.css') }}">
 </head>
 
 <body>

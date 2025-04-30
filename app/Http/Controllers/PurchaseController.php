@@ -14,8 +14,8 @@ class PurchaseController extends Controller
     public function index()
     {
         return view('purchase.index', [
-            'purchase' => Purchase::with('purchasedetail')->get(),
-            'accu' => Accu::with('type')->get()
+            'purchase' => Purchase::with(['purchasedetail', 'accu', 'type'])->get(),
+            'accu' => Accu::with('type')->get(),
         ]);
     }
 
